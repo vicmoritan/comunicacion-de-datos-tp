@@ -49,11 +49,11 @@ python -m venv venv
 ```
 4. Activar entorno virtual:
 ```bash
-venv\scripts\activate
+venv\Scripts\activate
 ```
 5. Instalar dependencias:
 ```bash
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 6. Ejecutar la aplicación:
 ```bash

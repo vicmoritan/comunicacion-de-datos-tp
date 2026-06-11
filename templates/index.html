@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Digitalización de Imágenes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1>Trabajo Práctico Integrador - Digitalización de Imágenes</h1>
+    <p>Comunicación de Datos - Etapa 2</p>
+</header>
+
+<main class="layout-imagenes">
+    <section class="panel">
+        <h2>Parámetros</h2>
+
+        <label>Imagen:</label>
+        <input type="file" id="inputImagen" accept="image/*">
+
+        <label>Resolución de muestreo:</label>
+        <select id="selectResolucion">
+            <option value="100">100 × 100 px</option>
+            <option value="300">300 × 300 px</option>
+            <option value="500" selected>500 × 500 px</option>
+            <option value="800">800 × 800 px</option>
+        </select>
+
+        <label>Profundidad de bits:</label>
+        <select id="selectBits">
+            <option value="1">1 bit</option>
+            <option value="8" selected>8 bits</option>
+            <option value="24">24 bits</option>
+        </select>
+
+        <button id="btnProcesar">Digitalizar</button>
+
+        <p id="mensajeImagen" class="mensaje"></p>
+    </section>
+
+    <section class="resultado">
+        <h2>Comparación: Original vs Digitalizada</h2>
+
+        <div class="comparacion">
+            <div>
+                <img id="imagenOriginal" class="preview" alt="Imagen original">
+                <h3>Original</h3>
+            </div>
+
+            <div>
+                <img id="imagenDigitalizada" class="preview" alt="Imagen digitalizada">
+                <h3>Digitalizada</h3>
+            </div>
+        </div>
+
+        <div class="estadisticas">
+            <p><strong>Tamaño original:</strong> <span id="tamanoOriginal">-</span> KB</p>
+            <p><strong>Tamaño digitalizado:</strong> <span id="tamanoDigitalizado">-</span> KB</p>
+            <p><strong>Porcentaje respecto al original:</strong> <span id="porcentaje">-</span>%</p>
+        </div>
+    </section>
+</main>
+
+<script src="{{ url_for('static', filename='js/imagenes.js') }}"></script>
+
+</body>
+</html>
