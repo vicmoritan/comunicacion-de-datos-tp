@@ -36,10 +36,23 @@
 
         <button id="btnProcesar">Digitalizar</button>
 
+        <!-- Toggle modo grilla -->
+        <div class="toggle-grilla">
+            <label class="toggle-label">
+                <input type="checkbox" id="checkGrilla">
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+                Comparar todas las resoluciones
+            </label>
+            <p class="toggle-desc">Muestra 100×100, 300×300, 500×500 y 800×800 al mismo tiempo.</p>
+        </div>
+
         <p id="mensajeImagen" class="mensaje"></p>
     </section>
 
-    <section class="resultado">
+    <!-- ── VISTA NORMAL ── -->
+    <section class="resultado" id="vistaComparacion">
         <h2>Comparación: Original vs Digitalizada</h2>
 
         <div class="comparacion">
@@ -47,22 +60,65 @@
                 <img id="imagenOriginal" class="preview" alt="Imagen original">
                 <h3>Original</h3>
             </div>
-
             <div>
                 <img id="imagenDigitalizada" class="preview" alt="Imagen digitalizada">
                 <h3>Digitalizada</h3>
+                <a id="btnDescargar" download="digitalizada.png">Descargar imagen</a>
             </div>
         </div>
 
         <div class="estadisticas">
-            <p><strong>Tamaño original:</strong> <span id="tamanoOriginal">-</span> KB</p>
-            <p><strong>Tamaño digitalizado:</strong> <span id="tamanoDigitalizado">-</span> KB</p>
+            <p><strong>Resolución original:</strong> <span id="resOriginal">-</span></p>
+            <p><strong>Resolución final:</strong> <span id="resFinal">-</span></p>
+            <p><strong>Profundidad:</strong> <span id="bitsInfo">-</span> bits</p>
+            <hr>
+            <p><strong>Tamaño teórico original:</strong> <span id="tamanoOriginal">-</span> KB</p>
+            <p><strong>Tamaño teórico digitalizado:</strong> <span id="tamanoDigitalizado">-</span> KB</p>
             <p><strong>Porcentaje respecto al original:</strong> <span id="porcentaje">-</span>%</p>
+        </div>
+
+        <section class="histogramas">
+            <h2>Histogramas RGB</h2>
+            <p class="hist-desc">
+                Cada curva representa la distribución de intensidades de un canal de color
+                (R = rojo, G = verde, B = azul). En imágenes en escala de grises, las tres
+                curvas se superponen.
+            </p>
+            <div class="comparacion">
+                <div>
+                    <img id="histOriginal" class="hist-img" alt="Histograma original">
+                    <h3>Original</h3>
+                </div>
+                <div>
+                    <img id="histDigitalizada" class="hist-img" alt="Histograma digitalizado">
+                    <h3>Digitalizada</h3>
+                </div>
+            </div>
+        </section>
+
+        <div class="info-teorica">
+            <h3>Conceptos aplicados</h3>
+            <ul>
+                <li><b>Muestreo:</b> reducción de resolución espacial.</li>
+                <li><b>Cuantización:</b> reducción de profundidad de bits por píxel.</li>
+                <li><b>Digitalización:</b> conversión de la imagen a representación digital.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ── VISTA GRILLA ── -->
+    <section class="resultado" id="vistaGrilla" style="display:none;">
+        <h2>Comparación de resoluciones</h2>
+        <p class="hist-desc">
+            La misma imagen procesada con profundidad <strong id="grillaBits">-</strong> bits
+            en las cuatro resoluciones disponibles. Permite ver el efecto del muestreo de forma directa.
+        </p>
+        <div class="grilla-resoluciones" id="grillaContenido">
+            <!-- Se genera dinámicamente por JS -->
         </div>
     </section>
 </main>
 
 <script src="{{ url_for('static', filename='js/imagenes.js') }}"></script>
-
 </body>
 </html>
